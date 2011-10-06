@@ -7,5 +7,10 @@ public class ClientCore implements IClientCore {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	@Override
+	public void sendMsgTo(String message) {
+		// TODO Auto-generated method stub
+		
+	}
 }
