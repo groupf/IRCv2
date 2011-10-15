@@ -8,13 +8,14 @@ public class ServerThread implements Runnable {
 	
 	private SocketServer _server;
 	private Socket _socket;
+	private User _socketUser;
 	
 	
-	public ServerThread(SocketServer inServer, Socket inSocket) {
+	public ServerThread(SocketServer inServer, Socket inSocket, User inSocketUser) {
 		// TODO Auto-generated constructor stub
 		this._server = inServer;
 		this._socket = inSocket;
-		
+		this._socketUser = inSocketUser;
 	}
 	@Override
 	public void run() {
@@ -29,7 +30,7 @@ public class ServerThread implements Runnable {
 				
 				//TODO Message Parser for IF-Condition sendToSpecificUser
 				
-				_server.sendToAll(message);
+				_server.sendToAll(message, _socketUser);
 			}
 		} catch (IOException e) {
 			// TODO Handle Exception for getInputSteram

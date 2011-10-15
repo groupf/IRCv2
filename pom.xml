@@ -51,7 +51,16 @@
 			</roles>
 			<timezone>+1</timezone>
 		</developer>
-
+		<developer>
+			<id>rabeeraj</id>
+			<name>Rabeendran Rajeevan</name>
+			<organization>GroupF HSZ-T</organization>
+			<organizationUrl>http://www.hsz-t.ch</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>+1</timezone>
+		</developer>
 	</developers>
 
 	<properties>

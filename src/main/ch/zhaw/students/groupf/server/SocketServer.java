@@ -33,21 +33,21 @@ public class SocketServer {
 
 		while (true) {
 			BufferedReader reader = null;
-			PrintWriter writer = null;
+//			PrintWriter writer = null;
 
 			Socket singleSocket;
 			try {
 				singleSocket = _serverSocket.accept();
 				reader = new BufferedReader(new InputStreamReader(singleSocket.getInputStream()));
 
-				User user = new User(reader.readLine());
+				User socketUser = new User(reader.readLine());
 
 				DataOutputStream doutStream = new DataOutputStream(singleSocket.getOutputStream());
+				
+				_openOutputStreams.put(socketUser, doutStream);
 
-				_openOutputStreams.put(user, doutStream);
 
-
-				new ServerThread(this, singleSocket);
+				new ServerThread(this, singleSocket, socketUser);
 
 			} catch (IOException e) {
 				// TODO Handle IOException
@@ -60,9 +60,9 @@ public class SocketServer {
 		}
 	}
 
-	protected void sendToAll(String inMessage) {
+	protected void sendToAll(String inMessage, User inSenderUser) {
 		synchronized (_openOutputStreams) {
-
+			
 		}
 	}
 	protected void sendToSpecificUser(User inRecipient, String inMessage){
@@ -72,6 +72,16 @@ public class SocketServer {
 	}
 	
 	protected void removeConnection(Socket inSocket){
-		
+		synchronized (_openOutputStreams) {
+			// TODO Appender to logger that a Connection is removed
+			_openOutputStreams.remove(inSocket);
+			
+			try {
+				inSocket.close();
+			} catch (IOException e) {
+				// TODO: Append to logger that Socket couldn't be closed
+				e.printStackTrace();
+			}
+		}
 	}
 }
