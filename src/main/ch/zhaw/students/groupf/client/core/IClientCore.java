@@ -1,4 +1,4 @@
-package ch.zhaw.students.groupf.client.core;
+package main.ch.zhaw.students.groupf.client.core;
 
 public interface IClientCore{
 	public void sendMsg(String message);

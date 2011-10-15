@@ -1,4 +1,4 @@
-package ch.zhaw.students.groupf.server;
+package main.ch.zhaw.students.groupf.server;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -24,7 +24,9 @@ public class SocketServer {
 		try {
 			_serverSocket = new ServerSocket(inServerPort);
 		} catch (IOException e) {
-			// TODO User slf4j as Log-Appender for the server-log
+			// TODO Throw Exception, because the ServerSocket could not have been started.
+			// User slf4j as Log-Appender for the server-log.
+			
 			e.printStackTrace();
 		}
 
@@ -67,5 +69,9 @@ public class SocketServer {
 		synchronized (_openOutputStreams) {
 
 		}
+	}
+	
+	protected void removeConnection(Socket inSocket){
+		
 	}
 }

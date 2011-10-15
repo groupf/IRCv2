@@ -1,4 +1,4 @@
-package ch.zhaw.students.groupf.server;
+package main.ch.zhaw.students.groupf.server;
 
 public class User {
 
