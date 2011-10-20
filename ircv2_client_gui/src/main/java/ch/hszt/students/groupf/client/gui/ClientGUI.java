@@ -1,4 +1,4 @@
-package main.ch.zhaw.students.groupf.client.gui;
+package ch.hszt.students.groupf.client.gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -109,7 +109,7 @@ public class ClientGUI{
 	
 	private class OpenConActionListener implements ActionListener{
 
-		@Override
+		
 		public void actionPerformed(ActionEvent arg0) {
 			
 //			echoServer.startEchoServer(14000);
@@ -151,17 +151,17 @@ public class ClientGUI{
 	}
 	private class CloseConActionListener implements ActionListener{
 
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
+		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
+
 		
 	}
 
 	private class SendMsgActionListener implements ActionListener{
 
-		@Override
+	
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			

@@ -1,4 +1,4 @@
-package main.ch.zhaw.students.groupf.client.gui;
+package ch.hszt.students.groupf.client.gui;
 
 public class ClientGUIStarter {
 
