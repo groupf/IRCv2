@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 
@@ -21,21 +22,28 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import ch.hszt.students.groupf.client.socket.ClientSocket;
+import ch.hszt.students.groupf.client.socket.ClientSocketConnector;
+import ch.hszt.students.groupf.client.socket.SocketClientConsumer;
+import ch.hszt.students.groupf.data.srvconfig.ServerDefaultConfig;
 
-public class ClientGUI{
+
+public class ClientGUI implements SocketClientConsumer{
 	
-	private JFrame frame;
-	private JMenuBar menubar;
-	private JMenu menuConnect;
-	private JMenuItem menuItemOpenCon;
-	private JMenuItem menuItemCloseCon;
-	private JTextArea txArea, rxArea;
-	private JPanel panelNorth, paneCenter, paneSouth;
-	private JLabel connectionLabel;
-	private JScrollPane scrollPaneRX, scrollPaneTX;
-	private JButton sendMsgBtn;
+	private JFrame _frame;
+	private JMenuBar _menubar;
+	private JMenu _menuConnect;
+	private JMenuItem _menuItemOpenCon;
+	private JMenuItem _menuItemCloseCon;
+	private JTextArea _txArea, _rxArea;
+	private JPanel _panelNorth, _paneCenter, _paneSouth;
+	private JLabel _connectionLabel;
+	private JScrollPane _scrollPaneRX, _scrollPaneTX;
+	private JButton _sendMsgBtn;
 //	private EchoServer echoServer;
 //	private ClientSocket clientSocket;
+	
+	private ClientSocketConnector _clientSocket;
 	
 //	@Override
 //	
@@ -50,60 +58,60 @@ public class ClientGUI{
 	}
 	
 	private void createFrame() {
-		frame = new JFrame("ChatGUI");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new BorderLayout());
-		connectionLabel = new JLabel(" ");
+		_frame = new JFrame("ChatGUI");
+		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		_frame.setLayout(new BorderLayout());
+		_connectionLabel = new JLabel(" ");
 //		fileLabel.setSize(frame.WIDTH, 30);
 		
-		panelNorth = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		_panelNorth = new JPanel(new FlowLayout(FlowLayout.LEFT));
 //		panelNorth.setSize(frame.WIDTH, 30);
-		panelNorth.add(connectionLabel);
+		_panelNorth.add(_connectionLabel);
 		
 		createMenuBar();
 		
-		rxArea = new JTextArea();
-		rxArea.setEditable(false);
-		rxArea.setLineWrap(true);
+		_rxArea = new JTextArea();
+		_rxArea.setEditable(false);
+		_rxArea.setLineWrap(true);
 		
-		txArea = new JTextArea();
-		scrollPaneTX = new JScrollPane(txArea);
-		scrollPaneRX = new JScrollPane(rxArea);
+		_txArea = new JTextArea();
+		_scrollPaneTX = new JScrollPane(_txArea);
+		_scrollPaneRX = new JScrollPane(_rxArea);
 		
 		
-		paneCenter = new JPanel(new GridLayout(2, 1));
-		paneCenter.add(scrollPaneRX);
-		paneCenter.add(scrollPaneTX);
+		_paneCenter = new JPanel(new GridLayout(2, 1));
+		_paneCenter.add(_scrollPaneRX);
+		_paneCenter.add(_scrollPaneTX);
 
-		sendMsgBtn = new JButton("Send");
-		sendMsgBtn.addActionListener(new SendMsgActionListener());
-		paneSouth = new JPanel(new FlowLayout());
-		paneSouth.add(sendMsgBtn);
+		_sendMsgBtn = new JButton("Send");
+		_sendMsgBtn.addActionListener(new SendMsgActionListener());
+		_paneSouth = new JPanel(new FlowLayout());
+		_paneSouth.add(_sendMsgBtn);
 				
-		frame.add(BorderLayout.NORTH,panelNorth);
-		frame.add(BorderLayout.CENTER,paneCenter);
-		frame.add(BorderLayout.SOUTH, paneSouth);
+		_frame.add(BorderLayout.NORTH,_panelNorth);
+		_frame.add(BorderLayout.CENTER,_paneCenter);
+		_frame.add(BorderLayout.SOUTH, _paneSouth);
 		
 		
-		frame.setSize(800, 600);
-		frame.setVisible(true);
+		_frame.setSize(800, 600);
+		_frame.setVisible(true);
 		
 	}
 
 	private void createMenuBar() {
-		menubar = new JMenuBar();
-		frame.setJMenuBar(menubar);
+		_menubar = new JMenuBar();
+		_frame.setJMenuBar(_menubar);
 		
-		menuConnect = new JMenu("Connection");
-		menubar.add(menuConnect);
+		_menuConnect = new JMenu("Connection");
+		_menubar.add(_menuConnect);
 		
-		menuItemOpenCon = new JMenuItem("Open Connection");
-		menuItemOpenCon.addActionListener(new OpenConActionListener());
-		menuConnect.add(menuItemOpenCon);
+		_menuItemOpenCon = new JMenuItem("Open Connection");
+		_menuItemOpenCon.addActionListener(new OpenConActionListener());
+		_menuConnect.add(_menuItemOpenCon);
 		
-		menuItemCloseCon = new JMenuItem("Close Connection");
-		menuItemCloseCon.addActionListener(new CloseConActionListener());
-		menuConnect.add(menuItemCloseCon);
+		_menuItemCloseCon = new JMenuItem("Close Connection");
+		_menuItemCloseCon.addActionListener(new CloseConActionListener());
+		_menuConnect.add(_menuItemCloseCon);
 		
 	}
 	
@@ -112,6 +120,18 @@ public class ClientGUI{
 		
 		public void actionPerformed(ActionEvent arg0) {
 			
+			
+			_clientSocket = new ClientSocket("127.0.0.1", ServerDefaultConfig.SERVERPORT );
+			
+			try {
+				_clientSocket.openConnection();
+			} catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO 
+				e.printStackTrace();
+			}
 //			echoServer.startEchoServer(14000);
 //			connectionLabel.setText(echoServer.getConnectionInfo());
 			
@@ -163,9 +183,24 @@ public class ClientGUI{
 
 	
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+			try {
+				_clientSocket.sendMsg(_txArea.getText());
+			} catch (IOException e) {
+				// TODO Hanlde IOException when message could not be sent
+				e.printStackTrace();
+			}
 			
 		}
+		
+	}
+
+	public void onDisconnected() {
+		// TODO Handle Disconnect call from the ClientSocket Thread
+		
+	}
+
+	public void onReceivedMsg(String inMessage) {
+		_rxArea.append(inMessage);
 		
 	}
 }
