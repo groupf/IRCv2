@@ -110,6 +110,8 @@ public class ClientGUI implements SocketClientConsumer{
 
 		
 		public void actionPerformed(ActionEvent arg0) {
+			new ClientConnGUI();
+			
 			String userName = "rest";
 			
 			_clientSocket = new ClientSocket(ClientGUI.this, "127.0.0.1", ServerDefaultConfig.SERVERPORT, userName );
