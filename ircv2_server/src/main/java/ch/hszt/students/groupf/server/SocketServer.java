@@ -1,5 +1,6 @@
 package ch.hszt.students.groupf.server;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,16 +32,19 @@ public class SocketServer {
 
 
 		while (true) {
-			BufferedReader reader = null;
+//			BufferedReader reader = null;
 //			PrintWriter writer = null;
 
 			Socket singleSocket;
 			try {
 				singleSocket = _serverSocket.accept();
+				
+//				DataInputStream dInStream = new DataInputStream(_socket.getInputStream());
+//				String message = dInStream.readUTF();
 //				reader = new BufferedReader(new InputStreamReader(singleSocket.getInputStream()));
 
 //				String socketUserName = reader.readLine();
-				String socketUserName = "User1";
+				String socketUserName = (new DataInputStream(singleSocket.getInputStream())).readUTF();
 				DataOutputStream doutStream = new DataOutputStream(singleSocket.getOutputStream());
 				
 				_openOutputStreams.put(socketUserName, doutStream);

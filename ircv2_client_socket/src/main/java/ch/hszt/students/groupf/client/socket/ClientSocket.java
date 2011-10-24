@@ -12,18 +12,20 @@ public class ClientSocket implements ClientSocketConnector, Runnable{
 	private DataInputStream _clientDataIn;
 	private DataOutputStream _clientDataOut;
 	private SocketClientConsumer _sktClientConsumer;
+	private String _socketUserName;
 	
 	//TODO Change _serverAddress to InetAddress or Inet4Address
 	private String _serverAddress;
 	//TODO Change _serverPort to a Port-Class
 	private int _serverPort;
 	
-//	public ClientSocket(SocketClientConsumer inSktClientConsumer, String inServerAddress, int inServerPort) {
-	public ClientSocket(String inServerAddress, int inServerPort) {
+	public ClientSocket(SocketClientConsumer inSktClientConsumer, String inServerAddress, int inServerPort, String inUserName) {
+//	public ClientSocket(String inServerAddress, int inServerPort) {
 		// TODO ServerAddress and ServerPort Validation with Exception throw
 		_serverAddress = inServerAddress;
 		_serverPort = inServerPort;
-//		_sktClientConsumer = inSktClientConsumer;
+		_sktClientConsumer = inSktClientConsumer;
+		_socketUserName = inUserName;
 	}
 	
 	public void openConnection() throws UnknownHostException, IOException{
@@ -33,7 +35,8 @@ public class ClientSocket implements ClientSocketConnector, Runnable{
 		
 		_clientDataIn = new DataInputStream(_clientSocket.getInputStream());
 		_clientDataOut = new DataOutputStream(_clientSocket.getOutputStream());
-//		_clientDataOut.writeUTF("User1");
+		_clientDataOut.writeUTF(_socketUserName);
+		
 		new Thread(this).start();
 		
 		
@@ -62,8 +65,8 @@ public class ClientSocket implements ClientSocketConnector, Runnable{
 				// TODO implement onDisconnected in GUI and call if exception
 				e.printStackTrace();
 			}
-			System.out.println(message);
-//			_sktClientConsumer.onReceivedMsg(message);
+			
+			_sktClientConsumer.onReceivedMsg(message + System.getProperty("line.separator"));
 		}
 		
 	}
