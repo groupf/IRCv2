@@ -37,17 +37,18 @@ public class SocketServer {
 			Socket singleSocket;
 			try {
 				singleSocket = _serverSocket.accept();
-				reader = new BufferedReader(new InputStreamReader(singleSocket.getInputStream()));
+//				reader = new BufferedReader(new InputStreamReader(singleSocket.getInputStream()));
 
-				String socketUserName = reader.readLine();
-
+//				String socketUserName = reader.readLine();
+				String socketUserName = "User1";
 				DataOutputStream doutStream = new DataOutputStream(singleSocket.getOutputStream());
 				
 				_openOutputStreams.put(socketUserName, doutStream);
 				
-
-				new ServerThread(this, singleSocket, socketUserName);
-
+				
+				(new ServerThread(this, singleSocket, socketUserName)).start();
+				
+				
 			} catch (IOException e) {
 				// TODO Handle IOException
 				e.printStackTrace();
@@ -62,6 +63,17 @@ public class SocketServer {
 	
 	protected void sendToAll(String inMessage, String inSenderUser) {
 		synchronized (_openOutputStreams) {
+			for (Map.Entry<String, DataOutputStream> entry : _openOutputStreams.entrySet()){
+				try {
+					entry.getValue().writeUTF(inSenderUser + ": " + inMessage);
+//					System.out.println(inSenderUser + " " + inMessage);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			}
+			
 			
 		}
 	}

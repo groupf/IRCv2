@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ServerThread implements Runnable {
+public class ServerThread extends Thread {
 	
 	private SocketServer _server;
 	private Socket _socket;
@@ -16,6 +16,7 @@ public class ServerThread implements Runnable {
 		_server = inServer;
 		_socket = inSocket;
 		_socketUserName = inSocketUserName;
+		
 	}
 	
 	public void run() {
@@ -31,6 +32,7 @@ public class ServerThread implements Runnable {
 				//TODO Message Parser for IF-Condition sendToSpecificUser
 				
 				_server.sendToAll(message, _socketUserName);
+//				System.out.println(message);
 			}
 		} catch (IOException e) {
 			// TODO Handle Exception for getInputSteram

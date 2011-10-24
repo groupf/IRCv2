@@ -29,32 +29,23 @@ import ch.hszt.students.groupf.data.srvconfig.ServerDefaultConfig;
 
 
 public class ClientGUI implements SocketClientConsumer{
-	
+//public class ClientGUI {	
 	private JFrame _frame;
 	private JMenuBar _menubar;
 	private JMenu _menuConnect;
 	private JMenuItem _menuItemOpenCon;
 	private JMenuItem _menuItemCloseCon;
 	private JTextArea _txArea, _rxArea;
+//	private JTextArea _txArea; 
+//	private static JTextArea _rxArea;
 	private JPanel _panelNorth, _paneCenter, _paneSouth;
 	private JLabel _connectionLabel;
 	private JScrollPane _scrollPaneRX, _scrollPaneTX;
 	private JButton _sendMsgBtn;
-//	private EchoServer echoServer;
-//	private ClientSocket clientSocket;
-	
 	private ClientSocketConnector _clientSocket;
 	
-//	@Override
-//	
-//	public void run() {
-//		
-//		
-//	}
 	public ClientGUI(){
 		createFrame();
-//		echoServer = new EchoServer();
-//		clientSocket = new ClientSocket();
 	}
 	
 	private void createFrame() {
@@ -121,6 +112,7 @@ public class ClientGUI implements SocketClientConsumer{
 		public void actionPerformed(ActionEvent arg0) {
 			
 			
+//			_clientSocket = new ClientSocket((SocketClientConsumer) this, "127.0.0.1", ServerDefaultConfig.SERVERPORT );
 			_clientSocket = new ClientSocket("127.0.0.1", ServerDefaultConfig.SERVERPORT );
 			
 			try {
@@ -133,7 +125,7 @@ public class ClientGUI implements SocketClientConsumer{
 				e.printStackTrace();
 			}
 //			echoServer.startEchoServer(14000);
-//			connectionLabel.setText(echoServer.getConnectionInfo());
+//			_connectionLabel.setText(_clientSocket.getConnectionInfo());
 			
 //			try {
 //				clientSocket.openSocket(Inet4Address.getLocalHost(), 14000);
@@ -183,12 +175,15 @@ public class ClientGUI implements SocketClientConsumer{
 
 	
 		public void actionPerformed(ActionEvent arg0) {
+			//TODO Handle NullPointerException when no ClientSocket was opened first (_clientSocket ==Null)
 			try {
 				_clientSocket.sendMsg(_txArea.getText());
 			} catch (IOException e) {
 				// TODO Hanlde IOException when message could not be sent
 				e.printStackTrace();
 			}
+			
+			_txArea.setText("");
 			
 		}
 		
