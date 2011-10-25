@@ -110,15 +110,18 @@ public class ClientGUI implements SocketClientConsumer{
 
 		
 		public void actionPerformed(ActionEvent arg0) {
-			new ClientConnGUI();
+
+			//TODO Connection GUI aufrufen oder mit JOptionpane.
+			//			new ClientConnGUI();
 			
-			String userName = "rest";
+			String userName = JOptionPane.showInputDialog(null, "Username:", "Username",JOptionPane.PLAIN_MESSAGE);
 			
 			_clientSocket = new ClientSocket(ClientGUI.this, "127.0.0.1", ServerDefaultConfig.SERVERPORT, userName );
-//			_clientSocket = new ClientSocket("127.0.0.1", ServerDefaultConfig.SERVERPORT );
+
 			
 			try {
 				_clientSocket.openConnection();
+				
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

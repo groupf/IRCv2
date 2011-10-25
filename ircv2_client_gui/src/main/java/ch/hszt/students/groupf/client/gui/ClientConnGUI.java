@@ -17,8 +17,8 @@ public class ClientConnGUI {
 	private JLabel _lblUserName = new JLabel("User Name:", JLabel.CENTER);
 	private JLabel _lblServerIP = new JLabel("Server IP:", JLabel.CENTER);
 	private JLabel _lblServerPort = new JLabel("Server Port:",JLabel.CENTER);
-	private JTextField _txtUserName = new JTextField(30);
-	private JTextField _txtServerIP = new JTextField(30);
+	private JTextField _txtUserName = new JTextField(15);
+	private JTextField _txtServerIP = new JTextField(15);
 	private JTextField _txtServerPort = new JTextField(15);
 //	SpringLayout layout = new SpringLayout();
 	private JPanel _gridPanel = new JPanel(new GridLayout(4,2,2,1));
