@@ -49,7 +49,6 @@ public class SocketServer {
 				
 				_openOutputStreams.put(socketUserName, doutStream);
 				
-				
 				(new ServerThread(this, singleSocket, socketUserName)).start();
 				
 				
@@ -61,6 +60,21 @@ public class SocketServer {
 				e.printStackTrace();
 			}
 
+		}
+	}
+	
+	protected void sendJoinedMsg(String inUserName){
+		synchronized (_openOutputStreams) {
+			for (Map.Entry<String, DataOutputStream> entry : _openOutputStreams.entrySet()){
+				if(!entry.getKey().equals(inUserName)){
+					try {
+						entry.getValue().writeUTF("User " + inUserName + " joined the chatroom");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}	
+				}
+			}			
 		}
 	}
 

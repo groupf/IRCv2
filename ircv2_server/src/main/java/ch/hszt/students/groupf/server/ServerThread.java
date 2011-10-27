@@ -20,7 +20,8 @@ public class ServerThread extends Thread {
 	}
 	
 	public void run() {
-		// TODO Auto-generated method stub
+
+		_server.sendJoinedMsg(_socketUserName);
 		try {
 			DataInputStream dInStream = new DataInputStream(_socket.getInputStream());
 			
