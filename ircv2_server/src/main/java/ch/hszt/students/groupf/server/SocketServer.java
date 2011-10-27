@@ -97,7 +97,13 @@ public class SocketServer {
 	}
 	protected void sendToSpecificUser(String inRecipient, String inMessage){
 		synchronized (_openOutputStreams) {
-
+			try {
+				_openOutputStreams.get(inRecipient).writeUTF(inMessage);
+			} catch (IOException e) {
+				// TODO respond to the corresponding ServerThread, that the given Recipient is unknwon
+				// TODO NullPointerException is very ugly!!! Handle this!  
+				e.printStackTrace();
+			}
 		}
 	}
 	
