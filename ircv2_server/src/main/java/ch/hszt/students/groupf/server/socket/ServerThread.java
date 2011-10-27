@@ -1,4 +1,4 @@
-package ch.hszt.students.groupf.server;
+package ch.hszt.students.groupf.server.socket;
 
 import java.io.DataInputStream;
 import java.io.IOException;

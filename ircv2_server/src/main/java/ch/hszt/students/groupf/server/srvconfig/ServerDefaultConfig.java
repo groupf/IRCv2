@@ -1,4 +1,4 @@
-package ch.hszt.students.groupf.data.srvconfig;
+package ch.hszt.students.groupf.server.srvconfig;
 
 public class ServerDefaultConfig {
 

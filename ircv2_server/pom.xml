@@ -7,9 +7,9 @@
   <description>	</description>
   <dependencies>
   	<dependency>
-  		<groupId>ch.hszt.students.groupf</groupId>
-  		<artifactId>ircv2_data</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.10</version>
   	</dependency>
   </dependencies>
     <build>
