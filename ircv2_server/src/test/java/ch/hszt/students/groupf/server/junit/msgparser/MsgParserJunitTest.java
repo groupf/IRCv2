@@ -1,46 +1,64 @@
 package ch.hszt.students.groupf.server.junit.msgparser;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import junit.framework.TestCase;
 import ch.hszt.students.groupf.server.msgparser.MsgParser;
 
-public class MsgParserJunitTest {
+public class MsgParserJunitTest extends TestCase {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	protected void setUp() throws Exception {
+		super.setUp();
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+	protected void tearDown() throws Exception {
+		super.tearDown();
 	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@Test
 	public void testIsForSecificUser() {
 
 		assertTrue(MsgParser.isForSecificUser("/asdfwwe"));
 		assertTrue(MsgParser.isForSecificUser("/ Hallo"));
 		assertFalse(MsgParser.isForSecificUser("Hallo Test"));
-
 	}
 
-	@Test
 	public void testGetRecipientUsername() {
+		assertEquals(
+				"testUser",
+				MsgParser
+						.getRecipientFromMsg("/testUser Ab hier kommt die Meldung"));
+
+		assertEquals("testUserAbhierkommtdieMeldung",
+				MsgParser.getRecipientFromMsg("/testUserAbhierkommtdieMeldung"));
+
+		assertEquals("testUser:AbhierkommtdieMeldung",
+				MsgParser
+						.getRecipientFromMsg("/testUser:AbhierkommtdieMeldung"));
+		assertEquals("", MsgParser.getRecipientFromMsg("/"));
+
+		assertEquals(
+				"",
+				MsgParser
+						.getRecipientFromMsg("\testUser Abhier kommt die Meldung"));
 
 	}
 
+	public void testGetMsgPartFromMsg() {
+
+		assertEquals(
+				"Ab hier kommt die Meldung",
+				MsgParser
+						.getMsgPartFromMsg("/testUser Ab hier kommt die Meldung"));
+
+		assertEquals("",
+				MsgParser.getMsgPartFromMsg("/testUserAbhierkommtdieMeldung"));
+
+		assertEquals("",
+				MsgParser.getMsgPartFromMsg("/testUser:AbhierkommtdieMeldung"));
+		assertEquals("", MsgParser.getMsgPartFromMsg("/"));
+
+		assertEquals(
+				"\testUser Abhier kommt die Meldung",
+				MsgParser
+						.getMsgPartFromMsg("\testUser Abhier kommt die Meldung"));
+
+	}
 }

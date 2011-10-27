@@ -101,10 +101,12 @@ public class SocketServer {
 		}
 	}
 
-	protected void sendToSpecificUser(String inRecipient, String inMessage) {
+	protected void sendToSpecificUser(String inSender, String inRecipient,
+			String inMessage) {
 		synchronized (_openOutputStreams) {
 			try {
-				_openOutputStreams.get(inRecipient).writeUTF(inMessage);
+				_openOutputStreams.get(inRecipient).writeUTF(
+						"from " + inSender + ": " + inMessage);
 			} catch (IOException e) {
 				// TODO respond to the corresponding ServerThread, that the
 				// given Recipient is unknwon
