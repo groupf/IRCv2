@@ -11,6 +11,7 @@
 package ch.hszt.students.groupf.client.gui2;
 
 import ch.hszt.students.groupf.client.controller.ClientController;
+import java.awt.event.KeyEvent;
 
 /**
  * 
@@ -141,15 +142,27 @@ public class ChatClientGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void onKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_onKeyPressed
-    
+    if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+       if(evt.isControlDown()) {
+           jTextArea2.append("\n");
+       }
+       else{
+           sendMsg();
+       }  
+    }
 }//GEN-LAST:event_onKeyPressed
 
 	private void onSendActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onSendActionPerformed
-		_controller.send(jTextArea2.getText());
-		jTextArea2.setText("");
-
+                sendMsg();
 	}// GEN-LAST:event_onSendActionPerformed
 
+        private void sendMsg(){
+            	_controller.send(jTextArea2.getText());
+		jTextArea2.setText("");
+                
+
+        }
+        
 	private void onOpenConnection(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_onOpenConnection
 		ChatClientConnGUI clientConnGUI = new ChatClientConnGUI(this, true);
 		clientConnGUI.setVisible(true);
