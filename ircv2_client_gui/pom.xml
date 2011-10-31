@@ -12,16 +12,6 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>ch.hszt.students.groupf</groupId>
-			<artifactId>ircv2_client_socket</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.hszt.students.groupf</groupId>
-			<artifactId>ircv2_data</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
