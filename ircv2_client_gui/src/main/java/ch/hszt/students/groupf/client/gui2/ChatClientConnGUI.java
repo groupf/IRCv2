@@ -20,9 +20,9 @@ public class ChatClientConnGUI extends javax.swing.JDialog {
 	public ChatClientConnGUI(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
-		jTextField1.setText("rest");
-		jTextField2.setText("127.0.0.1");
-		jTextField3.setText("10550");
+		// jTextField1.setText("rest");
+		jTextField2.setText("esternet.dyndns.org");
+		jTextField3.setText("8090");
 	}
 
 	/**
