@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import ch.hszt.students.groupf.client.gui2.ChatClientGUI;
+import ch.hszt.students.groupf.client.gui.ChatClientGUI;
 import ch.hszt.students.groupf.client.socket.ChatClient;
 import ch.hszt.students.groupf.client.socket.ClientSocket;
 import ch.hszt.students.groupf.client.socket.SocketClientConsumer;
