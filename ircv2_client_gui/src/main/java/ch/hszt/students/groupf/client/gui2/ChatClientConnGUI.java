@@ -209,7 +209,7 @@ public class ChatClientConnGUI extends javax.swing.JDialog {
 		} catch (UnknownHostException e) {
 			// TODO evtl. Log Appender
 			JOptionPane.showMessageDialog(this,
-					"The given Hostname could not have been resolved!",
+					"The given Hostname could not be resolved!",
 					"Unknown Host", JOptionPane.ERROR_MESSAGE);
 			// e.printStackTrace();
 		}
