@@ -20,7 +20,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>ch.hszt.students.groupf.server.ServerStarter</mainClass>
+							<mainClass>ch.hszt.students.groupf.server.socket.ServerStarter</mainClass>
 							<addClasspath>true</addClasspath>
 						</manifest>
 					</archive>
