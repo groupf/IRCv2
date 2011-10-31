@@ -1,6 +1,7 @@
 package ch.hszt.students.groupf.client.controller;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import ch.hszt.students.groupf.client.gui2.ChatClientGUI;
@@ -41,7 +42,8 @@ public class ClientController implements SocketClientConsumer {
 
 	}
 
-	public void connect(String serverAddress, int serverPort, String username) {
+	public void connect(InetAddress serverAddress, int serverPort,
+			String username) {
 
 		try {
 			_chatClient.connect(serverAddress, serverPort, username);

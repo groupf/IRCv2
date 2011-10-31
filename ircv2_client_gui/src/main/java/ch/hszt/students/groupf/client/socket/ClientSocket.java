@@ -3,6 +3,7 @@ package ch.hszt.students.groupf.client.socket;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -15,7 +16,7 @@ public class ClientSocket implements ChatClient, Runnable {
 	private String _socketUserName;
 
 	// TODO Change _serverAddress to InetAddress or Inet4Address
-	private String _serverAddress;
+	private InetAddress _serverAddress;
 	// TODO Change _serverPort to a Port-Class
 	private int _serverPort;
 
@@ -25,7 +26,7 @@ public class ClientSocket implements ChatClient, Runnable {
 		// TODO ServerAddress and ServerPort Validation with Exception throw
 	}
 
-	public void connect(String inServerAddress, int inServerPort,
+	public void connect(InetAddress inServerAddress, int inServerPort,
 			String inUserName) throws UnknownHostException, IOException {
 
 		_serverAddress = inServerAddress;

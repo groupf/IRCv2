@@ -10,6 +10,11 @@
  */
 package ch.hszt.students.groupf.client.gui2;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import javax.swing.JOptionPane;
+
 /**
  * 
  * @author rest
@@ -197,8 +202,18 @@ public class ChatClientConnGUI extends javax.swing.JDialog {
 		return jTextField1.getText();
 	}
 
-	String getServerAddress() {
-		return jTextField2.getText();
+	InetAddress getServerAddress() {
+		InetAddress addr = null;
+		try {
+			addr = InetAddress.getByName(jTextField2.getText());
+		} catch (UnknownHostException e) {
+			// TODO evtl. Log Appender
+			JOptionPane.showMessageDialog(this,
+					"The given Hostname could not have been resolved!",
+					"Unknown Host", JOptionPane.ERROR_MESSAGE);
+			// e.printStackTrace();
+		}
+		return addr;
 	}
 
 	int getServerPort() {
