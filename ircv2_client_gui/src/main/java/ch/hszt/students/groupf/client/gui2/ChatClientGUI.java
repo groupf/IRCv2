@@ -57,6 +57,7 @@ public class ChatClientGUI extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("IRCv2 Chat Client");
 
         jTextArea1.setColumns(20);
         jTextArea1.setEditable(false);
@@ -148,6 +149,7 @@ private void onKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_onKeyP
        }
        else{
            sendMsg();
+           
        }  
     }
 }//GEN-LAST:event_onKeyPressed
