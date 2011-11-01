@@ -23,7 +23,8 @@ public class SocketServer {
 		try {
 			_serverSocket = new ServerSocket(inServerPort);
 		} catch (IOException e) {
-			// TODO Throw Exception, because the ServerSocket could not have
+
+			// / TODO Throw Exception, because the ServerSocket could not have
 			// been started.
 			// User slf4j as Log-Appender for the server-log.
 

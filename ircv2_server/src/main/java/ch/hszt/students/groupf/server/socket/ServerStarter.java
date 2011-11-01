@@ -4,10 +4,10 @@ import ch.hszt.students.groupf.server.srvconfig.ServerDefaultConfig;
 
 /**
  * The Class ServerStarter starts the SocketServer. To start the Server start
- * this compiled .JAR File with the prefered TCP-Port on which the Server sould
+ * this compiled .JAR File with the preferred TCP-Port on which the Server should
  * listen.
  * 
- * eg.: To start the Server on Listening-Port 10550 >java ServerStarter.jar
+ * e.g.: To start the Server on Listening-Port 10550 >java ServerStarter.jar
  * 90100
  * 
  * @author Renato Estermann
@@ -17,6 +17,8 @@ public class ServerStarter {
 	public static void main(String[] args) {
 		int serverPort = ServerDefaultConfig.SERVERPORT;
 
+		
+		
 		// TODO eventually replace with BufferedReader from Config File or
 		// Java-Class in .groupf.data
 		if (args.length != 0) {

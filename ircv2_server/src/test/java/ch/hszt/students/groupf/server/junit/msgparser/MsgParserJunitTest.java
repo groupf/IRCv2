@@ -18,6 +18,8 @@ public class MsgParserJunitTest extends TestCase {
 		assertTrue(MsgParser.isForSecificUser("/asdfwwe"));
 		assertTrue(MsgParser.isForSecificUser("/ Hallo"));
 		assertFalse(MsgParser.isForSecificUser("Hallo Test"));
+		assertFalse(MsgParser.isForSecificUser("\\user hello"));
+		assertFalse(MsgParser.isForSecificUser("\\user"));
 	}
 
 	public void testGetRecipientUsername() {

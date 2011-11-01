@@ -10,6 +10,8 @@ public class MsgParser {
 		return inMessage.startsWith(_sendToIndicator);
 	}
 
+	
+	
 	public static String getRecipientFromMsg(String inMessage) {
 		if (isForSecificUser(inMessage)) {
 			String recipientUsername = "";
@@ -24,6 +26,8 @@ public class MsgParser {
 		return "";
 	}
 
+	
+	
 	public static String getMsgPartFromMsg(String inMessage) {
 		if (!isForSecificUser(inMessage)) {
 			return inMessage;
