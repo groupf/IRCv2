@@ -10,6 +10,4 @@ public interface ChatClient {
 
 	public void sendMsg(String message) throws IOException;
 
-	public void sendMsgTo(String message) throws IOException;
-
 }

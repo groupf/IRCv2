@@ -21,37 +21,56 @@ public class ClientSocket implements ChatClient, Runnable {
 	private int _serverPort;
 
 	public ClientSocket(SocketClientConsumer inSktClientConsumer) {
+		if (inSktClientConsumer == null)
+			throw new IllegalArgumentException("inSktClientConsumer must not be null");
 		_sktClientConsumer = inSktClientConsumer;
 		// public ClientSocket(String inServerAddress, int inServerPort) {
 		// TODO ServerAddress and ServerPort Validation with Exception throw
 	}
 
-	public void connect(InetAddress inServerAddress, int inServerPort,
-			String inUserName) throws UnknownHostException, IOException {
+	public void connect(InetAddress inServerAddress, int inServerPort, String inUserName) throws UnknownHostException,
+			IOException, IllegalArgumentException {
 
 		_serverAddress = inServerAddress;
 		_serverPort = inServerPort;
 		_socketUserName = inUserName;
 
-		_clientSocket = new Socket(_serverAddress, _serverPort);
+		_clientSocket = getNewSocket(_serverAddress, _serverPort);
 		// TODO Appender to the Log, that the Socket was opened
 
-		_clientDataIn = new DataInputStream(_clientSocket.getInputStream());
-		_clientDataOut = new DataOutputStream(_clientSocket.getOutputStream());
+		_clientDataIn = getNewDataInputStream(_clientSocket);
+		_clientDataOut = getNewDataOutputStream(_clientSocket);
 		_clientDataOut.writeUTF(_socketUserName);
 
 		new Thread(this).start();
 
 	}
 
+	void setClientSocket(Socket inclientSocket) {
+		_clientSocket = inclientSocket;
+	}
+
+	void setClientDataOut(DataOutputStream inclientDataOut) {
+		_clientDataOut = inclientDataOut;
+	}
+
+	DataOutputStream getNewDataOutputStream(Socket inSocket) throws IOException {
+		return new DataOutputStream(inSocket.getOutputStream());
+	}
+
+	DataInputStream getNewDataInputStream(Socket inSocket) throws IOException {
+		return new DataInputStream(inSocket.getInputStream());
+	}
+
+	Socket getNewSocket(InetAddress inServerAddress, int inServerPort) throws IOException {
+		if (inServerPort < 0)
+			throw new IllegalArgumentException("inServerPort must be greater or equals 0");
+		return new Socket(inServerAddress, inServerPort);
+	}
+
 	public void sendMsg(String inMessage) throws IOException {
 		// TODO implement the sendMsg Method
 		_clientDataOut.writeUTF(inMessage);
-
-	}
-
-	public void sendMsgTo(String message) throws IOException {
-		// TODO implement the sendMsgTo Method
 
 	}
 
@@ -68,8 +87,7 @@ public class ClientSocket implements ChatClient, Runnable {
 				}
 			}
 
-			_sktClientConsumer.onReceivedMsg(message
-					+ System.getProperty("line.separator"));
+			_sktClientConsumer.onReceivedMsg(message);
 		}
 
 	}
