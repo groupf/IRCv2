@@ -46,13 +46,13 @@ public class ClientSocket implements ChatClient, Runnable {
 
 	}
 
-	void setClientSocket(Socket inclientSocket) {
-		_clientSocket = inclientSocket;
-	}
-
-	void setClientDataOut(DataOutputStream inclientDataOut) {
-		_clientDataOut = inclientDataOut;
-	}
+	// void setClientSocket(Socket inclientSocket) {
+	// _clientSocket = inclientSocket;
+	// }
+	//
+	// void setClientDataOut(DataOutputStream inclientDataOut) {
+	// _clientDataOut = inclientDataOut;
+	// }
 
 	DataOutputStream getNewDataOutputStream(Socket inSocket) throws IOException {
 		return new DataOutputStream(inSocket.getOutputStream());
