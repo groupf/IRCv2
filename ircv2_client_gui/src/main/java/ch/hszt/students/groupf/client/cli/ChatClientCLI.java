@@ -1,27 +1,58 @@
 package ch.hszt.students.groupf.client.cli;
 
-import ch.hszt.students.groupf.client.socket.SocketClientConsumer;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
-public class ChatClientCLI implements SocketClientConsumer {
-	private boolean _exit = false;
+import ch.hszt.students.groupf.client.controller.ClientController;
+import ch.hszt.students.groupf.client.controller.UserInterface;
 
-	public ChatClientCLI() {
+public class ChatClientCLI implements UserInterface {
+	private boolean _exitCLI = false;
+	private final ClientController _controller;
+
+	public ChatClientCLI(ClientController inClientController) {
+		_controller = inClientController;
 		runSubshell();
 	}
 
 	private void runSubshell() {
+		String inText = "";
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 
-		while (!_exit) {
-			welcomeMsg();
-			// String inText = System.in;
+		welcomeMsg();
+		while (!_exitCLI) {
 
+			try {
+				inText = in.readLine();
+				if (inText.contains("\\q")) {
+					_exitCLI = true;
+				}
+				// out.write(strLine, 0, strLine.length());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+
+			}
+
+		}
+		try {
+			in.close();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
 
 	private void welcomeMsg() {
-		System.out.println("Welcome to the CLI-Chat Client IRCv2"
-				+ System.getProperty("line.separator"));
+
+		System.out.println("Welcome to the CLI-Chat Client IRCv2" + System.getProperty("line.separator"));
 		// TODO print out the help (possible commands)
 	}
 
