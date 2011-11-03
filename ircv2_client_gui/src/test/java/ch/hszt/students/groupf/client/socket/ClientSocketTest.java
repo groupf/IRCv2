@@ -1,13 +1,18 @@
 package ch.hszt.students.groupf.client.socket;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -16,14 +21,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 public class ClientSocketTest {
+	private int c = 0;
 
 	private SocketClientConsumer clientConsumer = mock(SocketClientConsumer.class);
 	private ClientSocket _clientSocket;
 	private final Socket _socket = mock(Socket.class);
 	private final DataOutputStream _dos = mock(DataOutputStream.class);
-	private final DataInputStream _dis = mock(DataInputStream.class);
+	private final DataInputStream _dis = spy(new DataInputStream(mock(InputStream.class)));
 	private static InetAddress _localhost;
 	private final int _serverPort = 10000;
 	private final String _userName = "TestUser";
@@ -35,10 +43,7 @@ public class ClientSocketTest {
 	@Before
 	public void setUp() throws Exception {
 		_localhost = Inet4Address.getLocalHost();
-		// clientConsumer = mock(SocketClientConsumer.class);
-		// _socket = mock(Socket.class);
-		// _dos = mock(DataOutputStream.class);
-		// _dis = mock(DataInputStream.class);
+
 		_clientSocket = new ClientSocket(clientConsumer) {
 			@Override
 			Socket getNewSocket(InetAddress inServerAddress, int inServerPort) throws IOException,
@@ -58,15 +63,6 @@ public class ClientSocketTest {
 				return _dis;
 			}
 		};
-
-		// when(_clientSocket.getNewSocket(_localhost,
-		// _serverPort).thenReturn(_socket);
-		// when(_clientSocket.getNewDataInputStream((Socket)
-		// anyObject())).thenReturn(_dis);
-		// when(_clientSocket.getNewDataOutputStream((Socket)
-		// anyObject())).thenReturn(_dos);
-		// _clientSocket.setClientSocket(_socket);
-		// _clientSocket.setClientDataOut(_dos);
 
 	}
 
@@ -88,32 +84,45 @@ public class ClientSocketTest {
 		ClientSocket clientSocket = new ClientSocket(clientConsumer);
 	}
 
-	@Test
+	@Test(expected = java.lang.IllegalArgumentException.class)
 	public void testConnectInvalidPort() throws Exception {
 
-		try {
-			_clientSocket.connect(_localhost, -1, _userName);
-			fail("not null param");
-		} catch (IllegalArgumentException e) {
-			assertTrue(e.getMessage().contains("Port"));
-		}
-
+		_clientSocket.connect(_localhost, -1, _userName);
 	}
 
-	// @Test
-	// public void testOnDisconnectedCallBack() throws Exception {
-	//
-	// // when(_dis.readUTF()).thenThrow(new IOException());
-	// doThrow(new IOException()).when(_dis).readUTF();
-	// _clientSocket.connect(_localhost, _serverPort, _userName);
-	// // when(_clientSocket.getNewSocket((InetAddress) anyObject(),
-	// // anyInt())).thenReturn(_socket);
-	// // when(_clientSocket.getNewDataInputStream(_socket)).thenReturn(_dis);
-	// // when(_clientSocket.getNewDataOutputStream(_socket)).thenReturn(_dos);
-	//
-	// verify(clientConsumer).onDisconnected((Exception) anyObject());
-	// // when(clientConsumer.onDisconnected("first").thenReturn("first"));
-	// }
+	@Test
+	public void testOnDisconnectedCallBack() throws Exception {
+		final Object lock = new Object();
+		when(_socket.isClosed()).thenReturn(true);
+
+		when(_dis.readUTF()).then(new Answer<Object>() {
+			public Object answer(InvocationOnMock invocation) throws Throwable {
+				synchronized (lock) {
+					try {
+						c++;
+						throw new IOException();
+					} finally {
+						lock.notify();
+					}
+				}
+			}
+		});
+		_clientSocket.connect(_localhost, _serverPort, _userName);
+		// when(_clientSocket.getNewSocket((InetAddress) anyObject(),
+		// anyInt())).thenReturn(_socket);
+		// when(_clientSocket.getNewDataInputStream(_socket)).thenReturn(_dis);
+		// when(_clientSocket.getNewDataOutputStream(_socket)).thenReturn(_dos);
+
+		synchronized (lock) {
+			while (c == 0) {
+				lock.wait();
+			}
+		}
+		assertEquals(1, c);
+		verify(clientConsumer).onDisconnected(any(IOException.class));
+		// when(clientConsumer.onDisconnected("first").thenReturn("first"));
+
+	}
 
 	@Test
 	public void testSendMsg() throws Exception {

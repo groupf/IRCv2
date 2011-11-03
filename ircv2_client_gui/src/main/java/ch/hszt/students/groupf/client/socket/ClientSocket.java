@@ -70,13 +70,17 @@ public class ClientSocket implements ChatClient, Runnable {
 
 	public void sendMsg(String inMessage) throws IOException {
 		// TODO implement the sendMsg Method
+		// TODO Can this give a NullpointerExeption, when the socket is
+		// disconnected (closed)?
 		_clientDataOut.writeUTF(inMessage);
 
 	}
 
 	public void run() {
 
-		while (true) {
+		boolean isConnected = true;
+
+		while (isConnected) {
 			String message = "";
 			try {
 				message = _clientDataIn.readUTF();
@@ -84,6 +88,7 @@ public class ClientSocket implements ChatClient, Runnable {
 			} catch (IOException e) {
 				if (_clientSocket.isClosed()) {
 					_sktClientConsumer.onDisconnected(e);
+					isConnected = false;
 				}
 			}
 
