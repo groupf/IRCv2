@@ -1,4 +1,4 @@
-package ch.hszt.students.groupf.server.junit.msgparser;
+package ch.hszt.students.groupf.server.msgparser;
 
 import junit.framework.TestCase;
 import ch.hszt.students.groupf.server.msgparser.MsgParser;

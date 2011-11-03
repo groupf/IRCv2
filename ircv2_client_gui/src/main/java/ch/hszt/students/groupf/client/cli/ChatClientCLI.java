@@ -7,9 +7,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import ch.hszt.students.groupf.client.controller.ClientController;
-import ch.hszt.students.groupf.client.controller.UserInterface;
+import ch.hszt.students.groupf.client.controller.UserInterfaceIfc;
 
-public class ChatClientCLI implements UserInterface {
+public class ChatClientCLI implements UserInterfaceIfc {
 	private boolean _exitCLI = false;
 	private final ClientController _controller;
 

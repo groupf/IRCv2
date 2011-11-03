@@ -1,4 +1,4 @@
-package ch.hszt.students.groupf.server.jmock.socket;
+package ch.hszt.students.groupf.server.socket;
 
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JUnit4Mockery;

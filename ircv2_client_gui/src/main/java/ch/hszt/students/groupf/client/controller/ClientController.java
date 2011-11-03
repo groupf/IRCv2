@@ -6,14 +6,14 @@ import java.net.UnknownHostException;
 
 import ch.hszt.students.groupf.client.cli.ChatClientCLI;
 import ch.hszt.students.groupf.client.gui.ChatClientGUI;
-import ch.hszt.students.groupf.client.socket.ChatClient;
+import ch.hszt.students.groupf.client.socket.ChatClientIfc;
 import ch.hszt.students.groupf.client.socket.ClientSocket;
-import ch.hszt.students.groupf.client.socket.SocketClientConsumer;
+import ch.hszt.students.groupf.client.socket.SocketClientConsumerIfc;
 
-public class ClientController implements SocketClientConsumer {
+public class ClientController implements SocketClientConsumerIfc {
 
-	private ChatClient _chatClient;
-	private UserInterface _userInterface;
+	private ChatClientIfc _chatClient;
+	private UserInterfaceIfc _userInterface;
 
 	public ClientController(boolean startCLI) {
 		_chatClient = new ClientSocket(this);

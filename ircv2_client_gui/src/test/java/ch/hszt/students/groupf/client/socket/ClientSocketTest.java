@@ -27,7 +27,7 @@ import org.mockito.stubbing.Answer;
 public class ClientSocketTest {
 	private int c = 0;
 
-	private SocketClientConsumer clientConsumer = mock(SocketClientConsumer.class);
+	private SocketClientConsumerIfc clientConsumer = mock(SocketClientConsumerIfc.class);
 	private ClientSocket _clientSocket;
 	private final Socket _socket = mock(Socket.class);
 	private final DataOutputStream _dos = mock(DataOutputStream.class);
@@ -80,7 +80,7 @@ public class ClientSocketTest {
 			assertTrue(e.getMessage().contains("null"));
 
 		}
-		SocketClientConsumer clientConsumer = mock(SocketClientConsumer.class);
+		SocketClientConsumerIfc clientConsumer = mock(SocketClientConsumerIfc.class);
 		ClientSocket clientSocket = new ClientSocket(clientConsumer);
 	}
 

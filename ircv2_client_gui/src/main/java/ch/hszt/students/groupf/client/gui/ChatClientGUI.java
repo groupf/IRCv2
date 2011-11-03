@@ -14,13 +14,13 @@ import java.awt.event.KeyEvent;
 import java.net.InetAddress;
 
 import ch.hszt.students.groupf.client.controller.ClientController;
-import ch.hszt.students.groupf.client.controller.UserInterface;
+import ch.hszt.students.groupf.client.controller.UserInterfaceIfc;
 
 /**
  * 
  * @author rest
  */
-public class ChatClientGUI extends javax.swing.JFrame implements UserInterface {
+public class ChatClientGUI extends javax.swing.JFrame implements UserInterfaceIfc {
 
 	private final ClientController _controller;
 
@@ -45,98 +45,114 @@ public class ChatClientGUI extends javax.swing.JFrame implements UserInterface {
 	// <editor-fold defaultstate="collapsed"
 	// <editor-fold defaultstate="collapsed"
 	// <editor-fold defaultstate="collapsed"
+	// <editor-fold defaultstate="collapsed"
 	// desc="Generated Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
 
 		jScrollPane1 = new javax.swing.JScrollPane();
-		jTextArea1 = new javax.swing.JTextArea();
+		_jTxtAReceived = new javax.swing.JTextArea();
 		jScrollPane2 = new javax.swing.JScrollPane();
-		jTextArea2 = new javax.swing.JTextArea();
-		jButton1 = new javax.swing.JButton();
-		jMenuBar1 = new javax.swing.JMenuBar();
-		jMenu1 = new javax.swing.JMenu();
-		jMenuItem1 = new javax.swing.JMenuItem();
-		jMenuItem2 = new javax.swing.JMenuItem();
-		jMenu2 = new javax.swing.JMenu();
-		jMenuItem3 = new javax.swing.JMenuItem();
-		jMenuItem4 = new javax.swing.JMenuItem();
+		_jTxtAInput = new javax.swing.JTextArea();
+		_jBtnSend = new javax.swing.JButton();
+		_jLblConnLbl = new javax.swing.JLabel();
+		_jLblConnStatus = new javax.swing.JLabel();
+		_jMenuBar = new javax.swing.JMenuBar();
+		_jMenuConn = new javax.swing.JMenu();
+		_jMenuItemOpConn = new javax.swing.JMenuItem();
+		_jMenuItemClCon = new javax.swing.JMenuItem();
+		_jMenuHelp = new javax.swing.JMenu();
+		_jMenuItemHlpCmd = new javax.swing.JMenuItem();
+		_jMenuItemHlpAbout = new javax.swing.JMenuItem();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("IRCv2 Chat Client");
 
-		jTextArea1.setColumns(20);
-		jTextArea1.setEditable(false);
-		jTextArea1.setLineWrap(true);
-		jTextArea1.setRows(5);
-		jScrollPane1.setViewportView(jTextArea1);
+		_jTxtAReceived.setColumns(20);
+		_jTxtAReceived.setEditable(false);
+		_jTxtAReceived.setLineWrap(true);
+		_jTxtAReceived.setRows(5);
+		jScrollPane1.setViewportView(_jTxtAReceived);
 
-		jTextArea2.setColumns(20);
-		jTextArea2.setLineWrap(true);
-		jTextArea2.setRows(5);
-		jTextArea2.addKeyListener(new java.awt.event.KeyAdapter() {
+		_jTxtAInput.setColumns(20);
+		_jTxtAInput.setLineWrap(true);
+		_jTxtAInput.setRows(5);
+		_jTxtAInput.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyPressed(java.awt.event.KeyEvent evt) {
 				onKeyPressed(evt);
 			}
 		});
-		jScrollPane2.setViewportView(jTextArea2);
+		jScrollPane2.setViewportView(_jTxtAInput);
 
-		jButton1.setText("Send");
-		jButton1.addActionListener(new java.awt.event.ActionListener() {
+		_jBtnSend.setText("Send");
+		_jBtnSend.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				onSendActionPerformed(evt);
 			}
 		});
 
-		jMenu1.setText("Connection");
+		_jLblConnLbl.setText("Connection Status:");
 
-		jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y,
+		_jLblConnStatus.setText("Not connected");
+
+		_jMenuConn.setText("Connection");
+
+		_jMenuItemOpConn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y,
 				java.awt.event.InputEvent.CTRL_MASK));
-		jMenuItem1.setText("Open Connection");
-		jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+		_jMenuItemOpConn.setText("Open Connection");
+		_jMenuItemOpConn.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				onOpenConnection(evt);
 			}
 		});
-		jMenu1.add(jMenuItem1);
+		_jMenuConn.add(_jMenuItemOpConn);
 
-		jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X,
+		_jMenuItemClCon.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X,
 				java.awt.event.InputEvent.CTRL_MASK));
-		jMenuItem2.setText("Close Connection");
-		jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+		_jMenuItemClCon.setText("Close Connection");
+		_jMenuItemClCon.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				onCloseConnection(evt);
 			}
 		});
-		jMenu1.add(jMenuItem2);
+		_jMenuConn.add(_jMenuItemClCon);
 
-		jMenuBar1.add(jMenu1);
+		_jMenuBar.add(_jMenuConn);
 
-		jMenu2.setText("Help");
+		_jMenuHelp.setText("Help");
 
-		jMenuItem3.setText("Commands");
-		jMenu2.add(jMenuItem3);
+		_jMenuItemHlpCmd.setText("Commands");
+		_jMenuHelp.add(_jMenuItemHlpCmd);
 
-		jMenuItem4.setText("About");
-		jMenu2.add(jMenuItem4);
+		_jMenuItemHlpAbout.setText("About");
+		_jMenuHelp.add(_jMenuItemHlpAbout);
 
-		jMenuBar1.add(jMenu2);
+		_jMenuBar.add(_jMenuHelp);
 
-		setJMenuBar(jMenuBar1);
+		setJMenuBar(_jMenuBar);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-				javax.swing.GroupLayout.Alignment.TRAILING,
 				layout.createSequentialGroup()
 						.addContainerGap()
 						.addGroup(
-								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-										.addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING,
-												javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
-										.addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING,
-												javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE))
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 612,
+												Short.MAX_VALUE)
+										.addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 612,
+												Short.MAX_VALUE)
+										.addGroup(
+												layout.createSequentialGroup()
+														.addComponent(_jLblConnLbl)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addComponent(_jLblConnStatus)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+																337, Short.MAX_VALUE)
+														.addComponent(_jBtnSend,
+																javax.swing.GroupLayout.PREFERRED_SIZE, 79,
+																javax.swing.GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap()));
 		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
 				layout.createSequentialGroup()
@@ -146,9 +162,14 @@ public class ChatClientGUI extends javax.swing.JFrame implements UserInterface {
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
 						.addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219,
 								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-						.addContainerGap()));
+						.addGap(18, 18, 18)
+						.addGroup(
+								layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addGroup(
+												layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+														.addComponent(_jLblConnLbl).addComponent(_jLblConnStatus))
+										.addComponent(_jBtnSend))
+						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
@@ -156,7 +177,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements UserInterface {
 	private void onKeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_onKeyPressed
 		if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (evt.isControlDown()) {
-				jTextArea2.append("\n");
+				_jTxtAInput.append("\n");
 			} else {
 				sendMsg();
 
@@ -169,8 +190,8 @@ public class ChatClientGUI extends javax.swing.JFrame implements UserInterface {
 	}// GEN-LAST:event_onSendActionPerformed
 
 	private void sendMsg() {
-		_controller.send(jTextArea2.getText());
-		jTextArea2.setText("");
+		_controller.send(_jTxtAInput.getText());
+		_jTxtAInput.setText("");
 
 	}
 
@@ -233,27 +254,34 @@ public class ChatClientGUI extends javax.swing.JFrame implements UserInterface {
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton jButton1;
-	private javax.swing.JMenu jMenu1;
-	private javax.swing.JMenu jMenu2;
-	private javax.swing.JMenuBar jMenuBar1;
-	private javax.swing.JMenuItem jMenuItem1;
-	private javax.swing.JMenuItem jMenuItem2;
-	private javax.swing.JMenuItem jMenuItem3;
-	private javax.swing.JMenuItem jMenuItem4;
+	private javax.swing.JButton _jBtnSend;
+	private javax.swing.JLabel _jLblConnLbl;
+	private javax.swing.JLabel _jLblConnStatus;
+	private javax.swing.JMenuBar _jMenuBar;
+	private javax.swing.JMenu _jMenuConn;
+	private javax.swing.JMenu _jMenuHelp;
+	private javax.swing.JMenuItem _jMenuItemClCon;
+	private javax.swing.JMenuItem _jMenuItemHlpAbout;
+	private javax.swing.JMenuItem _jMenuItemHlpCmd;
+	private javax.swing.JMenuItem _jMenuItemOpConn;
+	private javax.swing.JTextArea _jTxtAInput;
+	private javax.swing.JTextArea _jTxtAReceived;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JScrollPane jScrollPane2;
-	private javax.swing.JTextArea jTextArea1;
-	private javax.swing.JTextArea jTextArea2;
 
 	// End of variables declaration//GEN-END:variables
 
 	public void onReceivedMsg(String inMessage) {
-		jTextArea1.append(inMessage);
+		_jTxtAReceived.append(inMessage);
 
 	}
 
 	public void onDisconnected(Exception inEx) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void displayConnStatus(String connectionStatus) {
 		// TODO Auto-generated method stub
 
 	}

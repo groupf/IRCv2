@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public interface ChatClient {
+public interface ChatClientIfc {
 	public void connect(InetAddress inServerAddress, int inServerPort,
 			String inUserName) throws UnknownHostException, IOException;
 
