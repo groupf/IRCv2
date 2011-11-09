@@ -66,4 +66,9 @@ public class ChatClientCLI implements UserInterfaceIfc {
 
 	}
 
+	public void displayConnStatus(String connectionStatus) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
