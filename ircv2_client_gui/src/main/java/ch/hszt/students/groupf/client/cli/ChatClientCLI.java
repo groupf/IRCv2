@@ -69,7 +69,7 @@ public class ChatClientCLI implements UserInterfaceIfc {
 
 	public void displayConnStatus(String connectionStatus) {
 		// TODO evtl. use a write-buffer
-		System.out.println(connectionStatus);
+		// System.out.println(connectionStatus);
 	}
 
 }
