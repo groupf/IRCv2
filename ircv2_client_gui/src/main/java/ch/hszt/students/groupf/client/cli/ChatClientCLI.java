@@ -57,18 +57,19 @@ public class ChatClientCLI implements UserInterfaceIfc {
 	}
 
 	public void onDisconnected(Exception ex) {
-		// TODO Auto-generated method stub
+		// TODO evtl. use a write-buffer
+		System.out.println("Connection lost!");
 
 	}
 
 	public void onReceivedMsg(String inMessage) {
-		// TODO Auto-generated method stub
-
+		// TODO evtl. use a write-buffer
+		System.out.println(inMessage);
 	}
 
 	public void displayConnStatus(String connectionStatus) {
-		// TODO Auto-generated method stub
-
+		// TODO evtl. use a write-buffer
+		System.out.println(connectionStatus);
 	}
 
 }
