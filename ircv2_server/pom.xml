@@ -12,9 +12,29 @@
   		<version>4.10</version>
   	</dependency>
   	<dependency>
-  		<groupId>org.jmock</groupId>
-  		<artifactId>jmock-junit4</artifactId>
-  		<version>2.5.1</version>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-api</artifactId>
+  		<version>1.6.4</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.mockito</groupId>
+  		<artifactId>mockito-all</artifactId>
+  		<version>1.9.0-rc1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-simple</artifactId>
+  		<version>1.6.4</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>ch.qos.logback</groupId>
+  		<artifactId>logback-core</artifactId>
+  		<version>1.0.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>ch.qos.logback</groupId>
+  		<artifactId>logback-classic</artifactId>
+  		<version>1.0.0</version>
   	</dependency>
   </dependencies>
     <build>

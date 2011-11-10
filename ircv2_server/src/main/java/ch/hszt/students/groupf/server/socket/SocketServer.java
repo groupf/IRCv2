@@ -8,8 +8,12 @@ import java.net.Socket;
 import java.util.Hashtable;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class SocketServer {
 
+	final static Logger logger = LoggerFactory.getLogger(SocketServer.class);
 	private ServerSocket _serverSocket;
 	private Map<String, DataOutputStream> _openOutputStreams = new Hashtable<String, DataOutputStream>();
 
@@ -29,6 +33,7 @@ public class SocketServer {
 			// User slf4j as Log-Appender for the server-log.
 
 			e.printStackTrace();
+			System.exit(0);
 		}
 
 		while (true) {
@@ -46,10 +51,8 @@ public class SocketServer {
 				// InputStreamReader(singleSocket.getInputStream()));
 
 				// String socketUserName = reader.readLine();
-				String socketUserName = (new DataInputStream(
-						singleSocket.getInputStream())).readUTF();
-				DataOutputStream doutStream = new DataOutputStream(
-						singleSocket.getOutputStream());
+				String socketUserName = (new DataInputStream(singleSocket.getInputStream())).readUTF();
+				DataOutputStream doutStream = new DataOutputStream(singleSocket.getOutputStream());
 
 				// TODO Check if put overwrites existing usersocket
 				_openOutputStreams.put(socketUserName, doutStream);
@@ -70,12 +73,10 @@ public class SocketServer {
 
 	protected void sendJoinedMsg(String inUserName) {
 		synchronized (_openOutputStreams) {
-			for (Map.Entry<String, DataOutputStream> entry : _openOutputStreams
-					.entrySet()) {
+			for (Map.Entry<String, DataOutputStream> entry : _openOutputStreams.entrySet()) {
 				if (!entry.getKey().equals(inUserName)) {
 					try {
-						entry.getValue().writeUTF(
-								"User " + inUserName + " joined the chatroom");
+						entry.getValue().writeUTF("User " + inUserName + " joined the chatroom");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -87,8 +88,7 @@ public class SocketServer {
 
 	protected void sendToAll(String inMessage, String inSenderUser) {
 		synchronized (_openOutputStreams) {
-			for (Map.Entry<String, DataOutputStream> entry : _openOutputStreams
-					.entrySet()) {
+			for (Map.Entry<String, DataOutputStream> entry : _openOutputStreams.entrySet()) {
 				try {
 					entry.getValue().writeUTF(inSenderUser + ": " + inMessage);
 					// System.out.println(inSenderUser + " " + inMessage);
@@ -102,12 +102,10 @@ public class SocketServer {
 		}
 	}
 
-	protected void sendToSpecificUser(String inSender, String inRecipient,
-			String inMessage) {
+	protected void sendToSpecificUser(String inSender, String inRecipient, String inMessage) {
 		synchronized (_openOutputStreams) {
 			try {
-				_openOutputStreams.get(inRecipient).writeUTF(
-						"from " + inSender + ": " + inMessage);
+				_openOutputStreams.get(inRecipient).writeUTF("from " + inSender + ": " + inMessage);
 			} catch (IOException e) {
 				// TODO respond to the corresponding ServerThread, that the
 				// given Recipient is unknwon
