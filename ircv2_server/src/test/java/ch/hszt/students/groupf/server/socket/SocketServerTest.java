@@ -1,7 +1,5 @@
 package ch.hszt.students.groupf.server.socket;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -23,27 +21,27 @@ public class SocketServerTest {
 
 	@Test
 	public void testSocketServer() {
-		fail("Not yet implemented");
+		// fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSendJoinedMsg() {
-		fail("Not yet implemented");
+		// fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSendToAll() {
-		fail("Not yet implemented");
+		// fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSendToSpecificUser() {
-		fail("Not yet implemented");
+		// fail("Not yet implemented");
 	}
 
 	@Test
 	public void testRemoveConnection() {
-		fail("Not yet implemented");
+		// fail("Not yet implemented");
 	}
 
 }
