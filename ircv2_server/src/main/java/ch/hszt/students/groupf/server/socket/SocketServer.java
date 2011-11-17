@@ -28,11 +28,8 @@ public class SocketServer {
 			_serverSocket = new ServerSocket(inServerPort);
 		} catch (IOException e) {
 
-			// / TODO Throw Exception, because the ServerSocket could not have
-			// been started.
-			// User slf4j as Log-Appender for the server-log.
-
-			e.printStackTrace();
+			logger.error("Unable to start the Server on Port " + inServerPort + ". Server will be stopped!");
+			// e.printStackTrace();
 			System.exit(0);
 		}
 
@@ -54,20 +51,31 @@ public class SocketServer {
 				String socketUserName = (new DataInputStream(singleSocket.getInputStream())).readUTF();
 				DataOutputStream doutStream = new DataOutputStream(singleSocket.getOutputStream());
 
-				// TODO Check if put overwrites existing usersocket
-				_openOutputStreams.put(socketUserName, doutStream);
+				addUserToMap(socketUserName, doutStream);
+				// _openOutputStreams.put(socketUserName, doutStream);
 
 				(new ServerThread(this, singleSocket, socketUserName)).start();
 
 			} catch (IOException e) {
-				// TODO Handle IOException
-				e.printStackTrace();
+				logger.warn("IO Exception occured during the opening of an incoming Connection.");
+
 			} catch (IllegalArgumentException e) {
-				// TODO: Handle IllegalArgumentException (change to
-				// IllegalUsernameException)
-				e.printStackTrace();
+
+				logger.info("IllegalArgumentException: " + e.getMessage());
 			}
 
+		}
+	}
+
+	private void addUserToMap(String inUserName, DataOutputStream dos) throws IllegalArgumentException {
+		synchronized (_openOutputStreams) {
+			if (_openOutputStreams.containsKey(inUserName)) {
+				throw new IllegalArgumentException("Username allready exists in the Map.");
+			}
+			// TODO Parse Usernames, if they ar allowed -> needs a
+			// UserNameParser
+
+			_openOutputStreams.put(inUserName, dos);
 		}
 	}
 
@@ -78,8 +86,7 @@ public class SocketServer {
 					try {
 						entry.getValue().writeUTF("User " + inUserName + " joined the chatroom");
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.info("Could not send Message to User" + entry.getKey());
 					}
 				}
 			}
@@ -91,10 +98,9 @@ public class SocketServer {
 			for (Map.Entry<String, DataOutputStream> entry : _openOutputStreams.entrySet()) {
 				try {
 					entry.getValue().writeUTF(inSenderUser + ": " + inMessage);
-					// System.out.println(inSenderUser + " " + inMessage);
+
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.info("Could not send Message to User" + entry.getKey());
 				}
 
 			}
@@ -107,10 +113,14 @@ public class SocketServer {
 			try {
 				_openOutputStreams.get(inRecipient).writeUTF("from " + inSender + ": " + inMessage);
 			} catch (IOException e) {
-				// TODO respond to the corresponding ServerThread, that the
-				// given Recipient is unknwon
-				// TODO NullPointerException is very ugly!!! Handle this!
-				e.printStackTrace();
+				// TODO Auto-generated catch block
+				try {
+					_openOutputStreams.get(inSender).writeUTF("Could not send spezific Message to User" + inRecipient);
+					logger.info("Could not send spezific Message from User " + inSender + " to User" + inRecipient);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					logger.info("Could not send Message to User" + inSender);
+				}
 			}
 		}
 	}
