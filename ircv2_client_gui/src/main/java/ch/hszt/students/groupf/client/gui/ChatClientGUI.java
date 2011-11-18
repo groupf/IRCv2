@@ -272,7 +272,7 @@ public class ChatClientGUI extends javax.swing.JFrame implements UserInterfaceIf
 	// End of variables declaration//GEN-END:variables
 
 	public void onReceivedMsg(String inMessage) {
-		_jTxtAReceived.append(inMessage);
+		_jTxtAReceived.append(inMessage + System.getProperty("line.separator"));
 
 	}
 
