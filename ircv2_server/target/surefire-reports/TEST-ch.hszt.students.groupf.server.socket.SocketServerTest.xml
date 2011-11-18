@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.094" errors="0" skipped="0" tests="5" name="ch.hszt.students.groupf.server.socket.SocketServerTest">
+<testsuite failures="0" time="0.016" errors="0" skipped="0" tests="5" name="ch.hszt.students.groupf.server.socket.SocketServerTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_29\jre\bin"/>
@@ -19,7 +19,7 @@
     <property name="basedir" value="D:\Privat\FH-Studium\eclipse-workspace\IRCv2\ircv2_server"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.6.0_29\jre\lib\endorsed"/>
     <property name="os.arch" value="x86"/>
-    <property name="surefire.real.class.path" value="C:\DOCUME~1\rest\LOCALS~1\Temp\surefirebooter6024236015672008978.jar"/>
+    <property name="surefire.real.class.path" value="C:\DOCUME~1\rest\LOCALS~1\Temp\surefirebooter1207636965907038812.jar"/>
     <property name="java.io.tmpdir" value="C:\DOCUME~1\rest\LOCALS~1\Temp\"/>
     <property name="line.separator" value="
 "/>
@@ -27,8 +27,8 @@
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows XP"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.6.0_29\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre6/bin/client;C:/Program Files/Java/jre6/bin;C:/Program Files/Java/jre6/lib/i386;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;C:\WINDOWS\system32\WindowsPowerShell\v1.0;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Common Files\Acronis\SnapAPI\;C:\Program Files\UltraEdit;C:\Program Files\Windows Imaging\;C:\Program Files\tools\;C:\Program Files\QuickTime\QTSystem\;C:\Programme\apache-maven-2.2.1\bin;C:\Program Files\Java\jdk1.6.0_29\bin;C:\Program Files\CVSNT\;C:\Program Files\Common Files\Nero\Lib\;."/>
-    <property name="surefire.test.class.path" value="D:\Privat\FH-Studium\eclipse-workspace\IRCv2\ircv2_server\target\test-classes;D:\Privat\FH-Studium\eclipse-workspace\IRCv2\ircv2_server\target\classes;C:\Documents and Settings\rest\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Documents and Settings\rest\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Documents and Settings\rest\.m2\repository\org\slf4j\slf4j-api\1.6.4\slf4j-api-1.6.4.jar;C:\Documents and Settings\rest\.m2\repository\org\mockito\mockito-all\1.9.0-rc1\mockito-all-1.9.0-rc1.jar;C:\Documents and Settings\rest\.m2\repository\org\slf4j\slf4j-simple\1.6.4\slf4j-simple-1.6.4.jar;"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.6.0_29\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre6/bin/client;C:/Program Files/Java/jre6/bin;C:/Program Files/Java/jre6/lib/i386;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;C:\WINDOWS\system32\WindowsPowerShell\v1.0;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Common Files\Acronis\SnapAPI\;C:\Program Files\UltraEdit;C:\Program Files\Windows Imaging\;C:\Program Files\tools\;C:\Program Files\QuickTime\QTSystem\;C:\Programme\apache-maven-2.2.1\bin;C:\Program Files\Java\jdk1.6.0_29\bin;C:\Program Files\CVSNT\;C:\Program Files\Common Files\Nero\Lib\;C:\Program Files\Common Files\Nero\Lib\;."/>
+    <property name="surefire.test.class.path" value="D:\Privat\FH-Studium\eclipse-workspace\IRCv2\ircv2_server\target\test-classes;D:\Privat\FH-Studium\eclipse-workspace\IRCv2\ircv2_server\target\classes;C:\Documents and Settings\rest\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Documents and Settings\rest\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Documents and Settings\rest\.m2\repository\org\slf4j\slf4j-api\1.6.4\slf4j-api-1.6.4.jar;C:\Documents and Settings\rest\.m2\repository\org\mockito\mockito-all\1.9.0-rc1\mockito-all-1.9.0-rc1.jar;C:\Documents and Settings\rest\.m2\repository\ch\qos\logback\logback-core\1.0.0\logback-core-1.0.0.jar;C:\Documents and Settings\rest\.m2\repository\ch\qos\logback\logback-classic\1.0.0\logback-classic-1.0.0.jar;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="50.0"/>
     <property name="sun.management.compiler" value="HotSpot Client Compiler"/>
@@ -39,11 +39,11 @@
     <property name="java.specification.version" value="1.6"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="user.name" value="rest"/>
-    <property name="java.class.path" value="D:\Privat\FH-Studium\eclipse-workspace\IRCv2\ircv2_server\target\test-classes;D:\Privat\FH-Studium\eclipse-workspace\IRCv2\ircv2_server\target\classes;C:\Documents and Settings\rest\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Documents and Settings\rest\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Documents and Settings\rest\.m2\repository\org\slf4j\slf4j-api\1.6.4\slf4j-api-1.6.4.jar;C:\Documents and Settings\rest\.m2\repository\org\mockito\mockito-all\1.9.0-rc1\mockito-all-1.9.0-rc1.jar;C:\Documents and Settings\rest\.m2\repository\org\slf4j\slf4j-simple\1.6.4\slf4j-simple-1.6.4.jar;"/>
+    <property name="java.class.path" value="D:\Privat\FH-Studium\eclipse-workspace\IRCv2\ircv2_server\target\test-classes;D:\Privat\FH-Studium\eclipse-workspace\IRCv2\ircv2_server\target\classes;C:\Documents and Settings\rest\.m2\repository\junit\junit\4.10\junit-4.10.jar;C:\Documents and Settings\rest\.m2\repository\org\hamcrest\hamcrest-core\1.1\hamcrest-core-1.1.jar;C:\Documents and Settings\rest\.m2\repository\org\slf4j\slf4j-api\1.6.4\slf4j-api-1.6.4.jar;C:\Documents and Settings\rest\.m2\repository\org\mockito\mockito-all\1.9.0-rc1\mockito-all-1.9.0-rc1.jar;C:\Documents and Settings\rest\.m2\repository\ch\qos\logback\logback-core\1.0.0\logback-core-1.0.0.jar;C:\Documents and Settings\rest\.m2\repository\ch\qos\logback\logback-classic\1.0.0\logback-classic-1.0.0.jar;"/>
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.6.0_29\jre"/>
-    <property name="sun.java.command" value="C:\DOCUME~1\rest\LOCALS~1\Temp\surefirebooter6024236015672008978.jar C:\DOCUME~1\rest\LOCALS~1\Temp\surefire100735739878295667tmp C:\DOCUME~1\rest\LOCALS~1\Temp\surefire2689505164757430322tmp"/>
+    <property name="sun.java.command" value="C:\DOCUME~1\rest\LOCALS~1\Temp\surefirebooter1207636965907038812.jar C:\DOCUME~1\rest\LOCALS~1\Temp\surefire593510876823595474tmp C:\DOCUME~1\rest\LOCALS~1\Temp\surefire4242810190200643573tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="de"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -60,7 +60,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase time="0.016" classname="ch.hszt.students.groupf.server.socket.SocketServerTest" name="testSocketServer"/>
+  <testcase time="0" classname="ch.hszt.students.groupf.server.socket.SocketServerTest" name="testSocketServer"/>
   <testcase time="0" classname="ch.hszt.students.groupf.server.socket.SocketServerTest" name="testSendJoinedMsg"/>
   <testcase time="0" classname="ch.hszt.students.groupf.server.socket.SocketServerTest" name="testSendToAll"/>
   <testcase time="0" classname="ch.hszt.students.groupf.server.socket.SocketServerTest" name="testSendToSpecificUser"/>
